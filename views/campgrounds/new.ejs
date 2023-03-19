@@ -1,0 +1,78 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+  <h1 class="text-center">Add a Campground</h1>
+  <div class="col-6 offset-3">
+    <form
+      action="/campgrounds"
+      method="POST"
+      class="validated-form"
+      enctype="multipart/form-data"
+      novalidate
+    >
+      <div class="mb-3">
+        <label class="form-label" for="title">Campground Name</label>
+        <input
+          class="form-control"
+          type="text"
+          name="campground[title]"
+          id="title"
+          required
+        />
+        <div class="valid-feedback">Looks Good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Campground Location</label>
+        <input
+          type="text"
+          class="form-control"
+          name="campground[location]"
+          id="location"
+          required
+        />
+        <div class="valid-feedback">Looks Good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Campground Price</label>
+        <div class="input-group">
+          <span class="input-group-text">Rs.</span>
+          <input
+            type="text"
+            class="form-control"
+            name="campground[price]"
+            id="price"
+            placeholder="0.00"
+            required
+          />
+          <span class="input-group-text">k</span>
+        </div>
+        <div class="valid-feedback">Looks Good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label"
+          >Campground Description</label
+        >
+        <textarea
+          type="text"
+          class="form-control"
+          name="campground[description]"
+          id="description"
+          required
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <div class="input-group mb-3">
+          <input
+            type="file"
+            class="form-control"
+            name="image"
+            id="image"
+            multiple
+          />
+        </div>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
