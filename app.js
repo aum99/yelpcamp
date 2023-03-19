@@ -13,7 +13,9 @@ const User = require("./models/user");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const MongoDBStore = require("connect-mongo")(session);
-const dbUrl = process.env.DB_URL;
+const dbUrl = process.env;
+
+require("dotenv").config({ path: path.resolve(__dirname, "./.env") });
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -22,7 +24,7 @@ if (process.env.NODE_ENV !== "production") {
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
-
+console.log(dbUrl.DB_URL);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
@@ -33,7 +35,7 @@ db.on("error", console.error.bind(console, "connection error"));
 db.once("open", () => {
   console.log("Database connected!");
 });
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl.DB_URL);
 
 app.engine("ejs", ejsMate);
 app.use(express.urlencoded({ extended: true }));
@@ -47,9 +49,11 @@ app.use(
 );
 
 const store = new MongoDBStore({
-  url: dbUrl,
+  url: dbUrl.DB_URL,
   secret: "thisisasecretkey",
   touchAfter: 24 * 60 * 60,
+  mongooseConnection: mongoose.connection,
+  collection: "session",
 });
 
 store.on("error", function (e) {
