@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 const cities = require("./cities");
 const { places, descriptors } = require("./seedHelpers");
 const Campground = require("../models/campground");
-const dbUrl =
-  "mongodb+srv://aumbattul99:ZsnpI1o1pvFWHmLs@cluster0.uzbnoux.mongodb.net/?retryWrites=true&w=majority";
+const dbUrl = process.env.DB_URL;
 
 mongoose.set("strictQuery", false);
 

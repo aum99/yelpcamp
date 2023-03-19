@@ -13,8 +13,7 @@ const User = require("./models/user");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const MongoDBStore = require("connect-mongo")(session);
-const dbUrl =
-  "mongodb+srv://aumbattul99:ZsnpI1o1pvFWHmLs@cluster0.uzbnoux.mongodb.net/?retryWrites=true&w=majority";
+const dbUrl = process.env.DB_URL;
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
