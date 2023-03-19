@@ -24,7 +24,7 @@ if (process.env.NODE_ENV !== "production") {
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
-console.log(dbUrl.DB_URL);
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
